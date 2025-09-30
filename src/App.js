@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import StringCalculatorComponent from './stringCalculatorComponent';
 
 function App() {
   return (
     <div>
-      <>Hello World</>
+      <StringCalculatorComponent/>
     </div>
   );
 }
