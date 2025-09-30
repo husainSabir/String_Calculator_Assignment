@@ -4,6 +4,11 @@ function getNumbersList (inputNumbers) {
     if(inputNumbers === ''){
         return [];
     }
+
+    const numberList = inputNumbers.split(',').map(Number);
+
+    return numberList;
+
 }
 
 export default getNumbersList;
