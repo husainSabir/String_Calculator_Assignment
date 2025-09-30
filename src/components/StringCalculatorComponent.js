@@ -4,17 +4,22 @@ import AddNumbers from "../utils/AddNumbers";
 const StringCalculatorComponent = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleCalculate = () => {
-    console.log(input)
-    const res = AddNumbers(input);
-    console.log(res);
-    setResult(res);
+  try {
+      setError(null);
+      const res = AddNumbers(input);
+      setResult(res);
+    } catch (err) {
+      setError(err.message);
+      setResult(null);
+    }
   };
 
   return (
     <div>
-      <h1>String Calculator Kata</h1>
+      <h1>String Calculator</h1>
       <input
         type="text"
         value={input}
@@ -23,6 +28,7 @@ const StringCalculatorComponent = () => {
       />
      <button onClick={handleCalculate}>Calculate</button>
       {result !== null && <div>Result: {result}</div>}
+      {error && <div>Error: {error}</div>}
     </div>
   );
 };
