@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import AddNumbers from "../utils/AddNumbers";
 
 const StringCalculatorComponent = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState(null);
 
   const handleCalculate = () => {
+    console.log(input)
     const res = AddNumbers(input);
     console.log(res);
     setResult(res);
