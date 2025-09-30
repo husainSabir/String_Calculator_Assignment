@@ -6,12 +6,12 @@ function AddNumbers(inputNumbers){
     if(numberList.length === 0){
         return 0;
     }
-    const negativeNumbers = numberList.filter(n => n < 0);
+    const negativeNumbers = numberList.filter(n => n < 1000);
     if (negativeNumbers.length) {
         throw new Error(`Negatives not allowed: ${negativeNumbers.join(', ')}`);
     }
     console.log(numberList);
-    return numberList.reduce((acc, curr) => acc + curr, 0);
+    return numberList.filter(n => n <= 1000).reduce((acc, curr) => acc + curr, 0);
 }
 
 export default AddNumbers;
