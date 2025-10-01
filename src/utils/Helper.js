@@ -8,9 +8,7 @@ function getNumbersList (inputNumbers) {
      let delimiters = [',', '\n'];
     if (inputNumbers.startsWith('//')) {
         const delimiterPart = inputNumbers.split('\n')[0];
-        console.log(delimiterPart)
         inputNumbers = inputNumbers.substring(delimiterPart.length + 1);
-        delimiters.push(delimiterPart[2]);
         if (delimiterPart.includes('[')) {
             delimiters = delimiterPart.match(/\[([^\]]+)\]/g).map(d => d.slice(1, -1));
         } else {
@@ -18,7 +16,15 @@ function getNumbersList (inputNumbers) {
         }
     }
 
-    const numberList = inputNumbers.split(new RegExp(`[${delimiters.join('')}]`)).map(Number);
+    const delimiterPattern = new RegExp(delimiters.map(d => d.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|'));
+    const numberList = inputNumbers.split(delimiterPattern).map(Number);
+
+
+
+    // // This approach will be applied for all strings having numbers
+    // const numbers = inputNumbers.match(/-?\d+/g);
+    // const numberList =  numbers ? numbers.map(Number) : [];
+
 
     return numberList;
 

@@ -9,7 +9,7 @@ const StringCalculatorComponent = () => {
   const handleCalculate = () => {
   try {
       setError(null);
-      const res = AddNumbers(input);
+      const res = AddNumbers(input.replace(/\\n/g, '\n'));
       setResult(res);
     } catch (err) {
       setError(err.message);
